@@ -8,6 +8,9 @@
 	},
 	"data_from": "international",
 	"scripts": {
-		"site:custom" : []
+		"core:language": "wp language core install nl_NL; wp language core activate nl_NL",
+		"site:custom": [
+			"@core:language"
+		]
 	}
 }
