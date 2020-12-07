@@ -193,6 +193,10 @@ job_definitions:
       - attach_workspace:
           at: /tmp/workspace
       - run: activate-gcloud-account.sh
+      - run: make prepare-helm
+      - run: make backup
+      - run: BUILD_TAG=build-$(cat /tmp/workspace/var/circle-build-num) make deploy-helm
+      - run: make post-deploy
       - run: BUILD_TAG=build-$(cat /tmp/workspace/var/circle-build-num) make deploy
       - run:
           name: Extract workflow from commit message
