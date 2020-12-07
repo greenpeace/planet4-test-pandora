@@ -202,7 +202,7 @@ job_definitions:
           name: Extract workflow from commit message
           command: |
             GIT_COMMIT_MSG=$(git --git-dir=/tmp/workspace/src/.git log --format=%B -n 1 "$CIRCLE_SHA1")
-            UNHOLD_WORKFLOW_LINE=$(echo $GIT_COMMIT_MSG | grep '^\/unhold ' | cut -d )
+            UNHOLD_WORKFLOW_LINE=$(echo $GIT_COMMIT_MSG | grep '^\/unhold ')
             if [[ -z $UNHOLD_WORKFLOW_LINE ]]; then
               echo "Nothing to unhold"
               exit 0;
