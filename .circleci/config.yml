@@ -45,14 +45,18 @@ commands:
       - run:
           name: Unhold job.
           command: |
-            $workflow_id=$(cat /tmp/workspace/approve_workflow)
+            WORKFLOW_ID=$(cat /tmp/workspace/approve_workflow)
 
             url="https://circleci.com/api/v2/workflow/$WORKFLOW_ID/job"
 
+            echo $url
+
             # Get workflow details
             workflow=$(curl -s -u "${CIRCLE_TOKEN}": -X GET --header "Content-Type: application/json" "$url")
+            echo $workflow
             # Get approval job id
             job_id=$(echo "$workflow" | jq -r '.items[] | select(.name=="<< parameters.job_name >>") | .approval_request_id ')
+            echo $job_id
 
             if [[ -z $job_id ]]; then
               echo "Approval ID not found"
@@ -117,6 +121,7 @@ job_definitions:
   build_steps: &build_steps
     working_directory: ~/
     steps:
+      - run: echo building
       - setup_remote_docker:
           docker_layer_caching: true
       - restore_cache:
@@ -201,13 +206,17 @@ job_definitions:
       - run:
           name: Extract workflow from commit message
           command: |
-            GIT_COMMIT_MSG=$(git --git-dir=/tmp/workspace/src/.git log --format=%B -n 1 "$CIRCLE_SHA1")
-            UNHOLD_WORKFLOW_LINE=$(echo $GIT_COMMIT_MSG | grep '^\/unhold ')
+            UNHOLD_WORKFLOW_LINE=$(git --git-dir=/home/circleci/checkout/.git log --format=%B -n 1 "$CIRCLE_SHA1" | grep '^\/unhold ' )
+            echo $UNHOLD_WORKFLOW_LINE
+
             if [[ -z $UNHOLD_WORKFLOW_LINE ]]; then
               echo "Nothing to unhold"
               exit 0;
             fi
             WORKFLOW_ID=${UNHOLD_WORKFLOW_LINE#"/unhold "}
+
+            echo $WORKFLOW_ID
+
             echo $WORKFLOW_ID > /tmp/workspace/approve_workflow
       - approve_job:
           job_name: instance-ready
