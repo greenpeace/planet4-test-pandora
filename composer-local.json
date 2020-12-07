@@ -3,8 +3,8 @@
 	"description": "Greenpeace P4 test-pandora",
 	"license": "MIT",
 	"require": {
-		"greenpeace/planet4-master-theme" : "dev-split-google-fonts",
-		"greenpeace/planet4-plugin-gutenberg-blocks" : "dev-master"
+		"greenpeace/planet4-master-theme" : "dev-pr-test-instance-with-pr",
+		"greenpeace/planet4-plugin-gutenberg-blocks" : "v0.67"
 	},
 	"scripts": {
 		"site:custom" : []
