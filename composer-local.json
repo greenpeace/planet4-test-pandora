@@ -15,15 +15,7 @@
 			"version": "7",
 			"dist": {
 				"type": "zip",
-				"url": "gs://planet4-packages/planet4-master-theme/8c98cfdaa0b3e4a22c0306399feb3bc235a1d829.zip"
-			}
-		},
-		{
-			"name": "greenpeace/planet4-master-theme",
-			"version": "0",
-			"dist": {
-				"type": "zip",
-				"url": "gs://planet4-packages/planet4-master-theme/2ddf8a2578bd72008399c7d54fcc3e75654d22af.zip"
+				"url": "https://storage.googleapis.com/planet4-packages/planet4-master-theme/f70f27d8ab87c2c34ad5d5f0894669c8a955b9e7.zip"
 			}
 		}
 	]
