@@ -14,10 +14,11 @@
 			"type": "package",
 			"package": {
 				"name": "greenpeace/planet4-master-theme",
+				"type": "wordpress-theme",
 				"version": "7",
 				"dist": {
 					"type": "zip",
-					"url": "https://storage.googleapis.com/planet4-packages/planet4-master-theme/e82ad44455ac213f24fded8eb71a9a8bb19aaf12.zip"
+					"url": "https://storage.googleapis.com/planet4-packages/planet4-master-theme/7f0aa82111b95fa99a0156facd12f8c2ad287473.zip"
 				}
 			}
 		}
