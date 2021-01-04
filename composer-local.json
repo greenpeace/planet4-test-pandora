@@ -11,11 +11,14 @@
 	},
 	"repositories": [
 		{
-			"name": "greenpeace/planet4-master-theme",
-			"version": "7",
-			"dist": {
-				"type": "zip",
-				"url": "https://storage.googleapis.com/planet4-packages/planet4-master-theme/f70f27d8ab87c2c34ad5d5f0894669c8a955b9e7.zip"
+			"type": "package",
+			"package": {
+				"name": "greenpeace/planet4-master-theme",
+				"version": "7",
+				"dist": {
+					"type": "zip",
+					"url": "https://storage.googleapis.com/planet4-packages/planet4-master-theme/e82ad44455ac213f24fded8eb71a9a8bb19aaf12.zip"
+				}
 			}
 		}
 	]
