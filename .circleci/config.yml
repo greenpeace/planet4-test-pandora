@@ -45,31 +45,33 @@ commands:
       - run:
           name: Unhold job.
           command: |
-            WORKFLOW_ID=$(cat /tmp/workspace/approve_workflow)
+            if [ -f /tmp/workspace/approve_workflow ]; then
+              WORKFLOW_ID=$(cat /tmp/workspace/approve_workflow)
 
-            url="https://circleci.com/api/v2/workflow/$WORKFLOW_ID/job"
+              url="https://circleci.com/api/v2/workflow/$WORKFLOW_ID/job"
 
-            echo $url
+              echo $url
 
-            # Get workflow details
-            workflow=$(curl -s -u "${CIRCLE_TOKEN}": -X GET --header "Content-Type: application/json" "$url")
-            echo $workflow
-            # Get approval job id
-            job_id=$(echo "$workflow" | jq -r '.items[] | select(.name=="<< parameters.job_name >>") | .approval_request_id ')
-            echo $job_id
+              # Get workflow details
+              workflow=$(curl -s -u "${CIRCLE_TOKEN}": -X GET --header "Content-Type: application/json" "$url")
+              echo $workflow
+              # Get approval job id
+              job_id=$(echo "$workflow" | jq -r '.items[] | select(.name=="<< parameters.job_name >>") | .approval_request_id ')
+              echo $job_id
 
-            if [[ -z $job_id ]]; then
-              echo "Approval ID not found"
-              exit 1
+              if [[ -z $job_id ]]; then
+                echo "Approval ID not found"
+                exit 1
+              fi
+
+              echo "Approving << parameters.job_name >> for workflow $url"
+              echo "Job ID: ${job_id}"
+              curl \
+                --header "Content-Type: application/json" \
+                -u "${CIRCLE_TOKEN}:" \
+                -X POST \
+                "https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/approve/${job_id}"
             fi
-
-            echo "Approving << parameters.job_name >> for workflow $url"
-            echo "Job ID: ${job_id}"
-            curl \
-              --header "Content-Type: application/json" \
-              -u "${CIRCLE_TOKEN}:" \
-              -X POST \
-              "https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/approve/${job_id}"
 
 job_definitions:
   visualtests_reference_steps: &visualtests_reference_steps
@@ -205,18 +207,13 @@ job_definitions:
       - run:
           name: Extract workflow from commit message
           command: |
-            UNHOLD_WORKFLOW_LINE=$(git --git-dir=/home/circleci/checkout/.git log --format=%B -n 1 "$CIRCLE_SHA1" | grep '^\/unhold ' )
-            echo $UNHOLD_WORKFLOW_LINE
-
-            if [[ -z $UNHOLD_WORKFLOW_LINE ]]; then
-              echo "Nothing to unhold"
-              exit 0;
+            UNHOLD_WORKFLOW_LINE=$(git --git-dir=/home/circleci/checkout/.git log --format=%B -n 1 "$CIRCLE_SHA1" | { grep '^\/unhold ' || true; } )
+            echo "line $UNHOLD_WORKFLOW_LINE"
+            if [[ -n $UNHOLD_WORKFLOW_LINE ]]; then
+              WORKFLOW_ID=${UNHOLD_WORKFLOW_LINE#"/unhold "}
+              echo "$WORKFLOW_ID"
+              echo $WORKFLOW_ID > /tmp/workspace/approve_workflow
             fi
-            WORKFLOW_ID=${UNHOLD_WORKFLOW_LINE#"/unhold "}
-
-            echo $WORKFLOW_ID
-
-            echo $WORKFLOW_ID > /tmp/workspace/approve_workflow
       - approve_job:
           job_name: instance-ready
       - when:
