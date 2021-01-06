@@ -14,11 +14,61 @@
 			"type": "package",
 			"package": {
 				"name": "greenpeace/planet4-master-theme",
+				"description": "Master theme for the Planet 4 Wordpress project",
 				"type": "wordpress-theme",
-				"version": "7",
+				"minimum-stability": "stable",
+				"authors": [
+					{
+						"name": "Greenpeace International",
+						"email": "planet4-group@greenpeace.org"
+					}
+				],
+				"license": "MIT",
+				"repositories": [
+					{
+						"type": "composer",
+						"url": "https://wpackagist.org"
+					},
+					{
+						"type": "composer",
+						"url": "https://packagist.org"
+					}
+				],
+				"support": {
+					"issues": "https://github.com/greenpeace/planet4-master-theme/issues",
+					"wiki": "https://github.com/greenpeace/planet4-master-theme/wiki",
+					"source": "https://github.com/greenpeace/planet4-master-theme"
+				},
+				"autoload": {
+					"psr-4": {
+						"P4\\MasterTheme\\": "src/"
+					}
+				},
+				"extra": {
+					"installer-paths": {
+						"vendor/plugins/{$name}/": [
+							"type:wordpress-plugin"
+						]
+					}
+				},
+				"require": {
+					"greenpeace/github-archive-installer": "^1.2"
+				},
+				"require-dev": {
+					"squizlabs/php_codesniffer": "^3.5.3",
+					"wp-coding-standards/wpcs": "^2.2.0",
+					"dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+					"stevegrunwell/phpunit-markup-assertions": "^1.2",
+					"phpunit/phpunit": "^6.2"
+				},
+				"scripts": {
+					"fixes": "vendor/bin/phpcbf",
+					"sniffs": "vendor/bin/phpcs"
+				},
+				"version": 7,
 				"dist": {
 					"type": "zip",
-					"url": "https://storage.googleapis.com/planet4-packages/planet4-master-theme/7f0aa82111b95fa99a0156facd12f8c2ad287473.zip"
+					"url": "https://storage.googleapis.com/planet4-packages/planet4-master-theme/822f92c6043ea4895f8a52ebde75dcb8110713c9.zip"
 				}
 			}
 		}
