@@ -3,36 +3,10 @@
 	"description": "Greenpeace P4 test-pandora",
 	"license": "MIT",
 	"require": {
-		"greenpeace/planet4-master-theme": "7",
-		"greenpeace/planet4-plugin-gutenberg-blocks": "v0.67"
+		"greenpeace/planet4-master-theme": "dev-planet-4590",
+		"greenpeace/planet4-plugin-gutenberg-blocks": "dev-planet-4590"
 	},
 	"scripts": {
 		"site:custom": []
-	},
-	"repositories": [
-		{
-			"type": "package",
-			"package": {
-				"name": "greenpeace/planet4-master-theme",
-				"type": "wordpress-theme",
-				"autoload": {
-					"psr-4": {
-						"P4\\MasterTheme\\": "src/"
-					}
-				},
-				"extra": {
-					"installer-paths": {
-						"vendor/plugins/{$name}/": [
-							"type:wordpress-plugin"
-						]
-					}
-				},
-				"version": 7,
-				"dist": {
-					"type": "zip",
-					"url": "https://storage.googleapis.com/planet4-packages/planet4-master-theme/0d29a200bf8f6d40e1d2458abab56ff19ce2f145.zip"
-				}
-			}
-		}
-	]
+	}
 }
