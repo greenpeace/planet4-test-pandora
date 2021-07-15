@@ -8,8 +8,10 @@
 	},
 	"scripts": {
 		"install:plugin-apm": "wp plugin install --activate https://storage.googleapis.com/p4-ray-test/wordpress-apm-agent-elasticsearch.zip",
+		"core:language": "wp language core install nl_NL; wp language core activate nl_NL",
 		"site:custom": [
-			"@install:plugin-apm"
+			"@install:plugin-apm",
+			"@core:language"
 		]
 	},
 	"repositories": [
