@@ -6,16 +6,16 @@
 		"greenpeace/planet4-master-theme": "7",
 		"greenpeace/planet4-plugin-gutenberg-blocks": "dev-master",
 		"plugins/sitepress-multilingual-cms": "*",
-        "plugins/wpml-translation-management": "*",
-        "plugins/wpml-string-translation": "*",
-        "plugins/wpml-media-translation": "*"
+		"plugins/wpml-translation-management": "*",
+		"plugins/wpml-string-translation": "*",
+		"plugins/wpml-media-translation": "*"
 	},
-    "scripts": {
-        "core:language": "wp language core install fr_CA",
-        "site:custom" : [
-            "@core:language"
-        ]
-    },
+	"scripts": {
+		"core:language": "wp language core install fr_CA",
+		"site:custom": [
+			"@core:language"
+		]
+	},
 	"data_from": "africa",
 	"repositories": [
 		{
@@ -38,7 +38,7 @@
 				"version": 7,
 				"dist": {
 					"type": "zip",
-					"url": "https://storage.googleapis.com/planet4-packages/planet4-master-theme/a8ccb35dc81d808e2ca0606b69de3b685f6fb3a9.zip"
+					"url": "https://storage.googleapis.com/planet4-packages/planet4-master-theme/90eb3019be9f6999e960ecaf601c173ca1816471.zip"
 				}
 			}
 		}
