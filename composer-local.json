@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"require": {
 		"greenpeace/planet4-master-theme": "dev-master",
-		"greenpeace/planet4-plugin-gutenberg-blocks": "7",
+		"greenpeace/planet4-plugin-gutenberg-blocks": "dev-master",
 		"plugins/sitepress-multilingual-cms": "*",
 		"plugins/wpml-translation-management": "*",
 		"plugins/wpml-string-translation": "*",
@@ -17,20 +17,5 @@
 		]
 	},
 	"data_from": "africa",
-	"repositories": [
-		{
-			"type": "package",
-			"package": {
-				"name": "greenpeace/planet4-plugin-gutenberg-blocks",
-				"type": "wordpress-plugin",
-				"autoload": null,
-				"extra": null,
-				"version": 7,
-				"dist": {
-					"type": "zip",
-					"url": "https://storage.googleapis.com/planet4-packages/planet4-plugin-gutenberg-blocks/2adedcec17082487f437e75a158191aaea61b770.zip"
-				}
-			}
-		}
-	]
+	"repositories": []
 }
