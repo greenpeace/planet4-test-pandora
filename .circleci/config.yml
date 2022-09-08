@@ -33,6 +33,7 @@ job_environments:
     HELM_RELEASE: planet4-test-pandora
     WP_DB_NAME: planet4-testpand_wordpress_develop
     WP_STATELESS_BUCKET: planet4-test-pandora-stateless-develop
+    CHART_VERSION: 0.8.30
 
 
 commands:
