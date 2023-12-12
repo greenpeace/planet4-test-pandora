@@ -48,6 +48,7 @@ job_environments:
     HELM_RELEASE: planet4-test-pandora
     WP_DB_NAME: planet4-testpand_wordpress_develop
     WP_STATELESS_BUCKET: planet4-test-pandora-stateless-develop
+    GIT_REF: fix/php8-monolog
 
 
 commands:
@@ -159,7 +160,10 @@ job_definitions:
 
 jobs:
   build-develop:
-    <<: *defaults
+    docker:
+      - image: greenpeaceinternational/p4-builder:php8.1
+        auth:
+          <<: *docker_auth
     environment:
       <<: *common_environment
       <<: *develop_environment
